@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بازی حدس عدد</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 60%;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    p {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 بازی حدس عدد</h1>
+    <p>یک عدد بین 1 تا 100 حدس بزن!</p>
+    <input type="number" id="guessInput" min="1" max="100">
+    <br>
+    <button onclick="checkGuess()">حدس بزن</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById('guessInput').value);
+      const result = document.getElementById('result');
+      attempts++;
+
+      if (guess === randomNumber) {
+        result.textContent = `🎉 تبریک! شما درست حدس زدید. تعداد تلاش‌ها: ${attempts}`;
+      } else if (guess < randomNumber) {
+        result.textContent = "⬆️ بیشتر تلاش کن!";
+      } else if (guess > randomNumber) {
+        result.textContent = "⬇️ کمتر تلاش کن!";
+      } else {
+        result.textContent = "⚠️ لطفاً یک عدد معتبر وارد کنید.";
+      }
+    }
+  </script>
+</body>
+</html>
